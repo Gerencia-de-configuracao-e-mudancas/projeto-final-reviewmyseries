@@ -1,0 +1,49 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+#navBar{
+    display: flex;
+    background-color: rgb(16, 24, 24);
+    height: 60px;
+    align-items: center;
+    border-bottom: 2px solid black;
+}
+#navList{
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin-left: auto;
+    margin-right: 50px;
+}  
+#navList li{
+    color: white;
+    padding: 20px;
+    cursor: pointer;
+
+}
+#content {
+    background-color: rgb(47, 63, 63);
+    height: calc(100vh - 60px);
+    width: 100%;
+    padding-left: 60px;
+    box-sizing: border-box;
+    padding-right: 60px;
+}
+#h2-inicio {
+    color: white;
+    margin: 0;
+    padding: 10px;
+}
+.series-container {
+    display: grid;
+    grid-template-columns: repeat(4, 18vw);
+    gap: 50px;
+}
+.series-item img {
+    width: 100%;
+    aspect-ratio: 2 / 3; /* padrão de pôster */
+    object-fit: cover;
+    border-radius: 8px;
+
+}
