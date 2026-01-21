@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Review MySeries</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -13,37 +13,37 @@
              <p class="namesite1">Review</p>
              <p class="namesite2">MySeries</p>
             <ul id ="navList">
-                <li><a href="index.html">Inicio</a></li >
-                <li><a href="">Séries</a></li>
-                <li><a href="">Filmes</a></li>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="#">Séries</a></li>
+                <li><a href="#">Filmes</a></li>
             </ul>
         </nav>
     </header>
-    <div id="content">
-            <h2 id="h2-inicio">Séries Favoritas de Nossos Usuários</h2>
-            <hr>
-            <div class="series-container">
-                <div class="series-item" onclick="mostrarDetalhes('breakingbad')">
-                    <img src="imagens/breaking_bad.jpeg" alt="Breaking Bad">
-                    <h3>9.9<b id="star">★</b></h3>
-                </div>
-                <div class="series-item" onclick="mostrarDetalhes('the_crown')">
-                    <img src="imagens/the_crown.webp" alt="The Crown">
-                    <h3>9<b id="star">★</b></h3>
-                </div>
-                    <div class="series-item" onclick="mostrarDetalhes('stranger_things')">
-                        <img src="imagens/stranger_things.jpeg" alt="Stranger Things">
-                        <h3>8.5<b id="star">★</b></h3>
-                </div>
 
-                <div class="series-item" onclick="mostrarDetalhes('game_of_thrones')">
-                    <img src="imagens/game_of_thrones.png" alt="Game of Thrones">
-                    <h3>8<b id="star">★</b></h3>
-                </div>
+    <div id="content">
+        <h2 id="h2-inicio">Séries Favoritas de Nossos Usuários</h2>
+        <hr>
+        <div class="series-container">
+            <div class="series-item" onclick="mostrarDetalhes('breakingbad')">
+                <img src="imagens/breaking_bad.jpeg" alt="Breaking Bad">
+                <h3><span id="display-breakingbad">9.9</span><b id="star">★</b></h3>
             </div>
+            <div class="series-item" onclick="mostrarDetalhes('the_crown')">
+                <img src="imagens/the_crown.webp" alt="The Crown">
+                <h3><span id="display-the_crown">9.0</span><b id="star">★</b></h3>
+            </div>
+            <div class="series-item" onclick="mostrarDetalhes('stranger_things')">
+                <img src="imagens/stranger_things.jpeg" alt="Stranger Things">
+                <h3><span id="display-stranger_things">8.5</span><b id="star">★</b></h3>
+            </div>
+            <div class="series-item" onclick="mostrarDetalhes('game_of_thrones')">
+                <img src="imagens/game_of_thrones.png" alt="Game of Thrones">
+                <h3><span id="display-game_of_thrones">8.0</span><b id="star">★</b></h3>
+            </div>
+        </div>
+
         <section id="detalhes-serie">
             <div class="detalhes-grid">
-            
               <div class="detalhes-img">
                 <img id="detalhe-imagem" src="" alt="Capa da série">
               </div>
@@ -58,12 +58,22 @@
               </div>
           
               <div class="detalhes-avaliacao">
-                <p>Avalie esta série</p>
-                <div class="estrelas">
-                  ★ ★ ★ ★ ★
+                <p>Sua Avaliação:</p>
+                <div class="estrelas-voto">
+                    <span class="star-btn" onclick="selecionarEstrela(1)">★</span>
+                    <span class="star-btn" onclick="selecionarEstrela(2)">★</span>
+                    <span class="star-btn" onclick="selecionarEstrela(3)">★</span>
+                    <span class="star-btn" onclick="selecionarEstrela(4)">★</span>
+                    <span class="star-btn" onclick="selecionarEstrela(5)">★</span>
+                    <span class="star-btn" onclick="selecionarEstrela(6)">★</span>
+                    <span class="star-btn" onclick="selecionarEstrela(7)">★</span>
+                    <span class="star-btn" onclick="selecionarEstrela(8)">★</span>
+                    <span class="star-btn" onclick="selecionarEstrela(9)">★</span>
+                    <span class="star-btn" onclick="selecionarEstrela(10)">★</span>
                 </div>
+                <button id="btn-avaliar" onclick="salvarAvaliacao()">Avaliar</button>
+                <p id="feedback-voto"></p>
               </div>
-          
             </div>
         </section>
     </div>
