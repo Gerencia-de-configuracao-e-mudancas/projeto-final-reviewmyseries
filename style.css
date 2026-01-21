@@ -1,6 +1,7 @@
 body {
     margin: 0;
     font-family: Arial, sans-serif;
+    background-color: rgb(47, 63, 63);
 }
 #navBar{
     display: flex;
@@ -31,7 +32,6 @@ body {
 }
 #content {
     background-color: rgb(47, 63, 63);
-    height: calc(100vh - 60px);
     width: 100%;
     padding-left: 60px;
     box-sizing: border-box;
@@ -49,11 +49,15 @@ body {
     gap: 50px;
 }
 .series-item img {
-    width: 100%;
-    aspect-ratio: 2 / 3; /* padrão de pôster */
+    width: 80%;
+    aspect-ratio: 2 / 3;
     object-fit: cover;
     border-radius: 8px;
 
+}
+.series-item img:hover {
+    transform: scale(1.05); 
+    transition: 0.15s ease; 
 }
 
 .namesite1{
@@ -72,4 +76,59 @@ body {
  height: 24px;  
  margin-left: 20px;
  margin-right: 4px;
+}
+
+#star{
+    color: gold;
+}
+.series-item h3 {
+    color: white;
+    margin: 10px 0 0 0;
+    font-size: 24px;
+    padding: auto;
+}
+#detalhes-serie{
+   display: none;
+   margin-top: 40px;
+   margin-bottom: 40px;
+}
+.detalhes-grid {
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  gap: 20px;
+  padding: 20px;
+  background-color: rgb(67, 82, 82);
+}
+.detalhes-img{
+    height: 360px;
+}
+.detalhes-info {
+  color: white;
+  background-color: rgb(31, 39, 39);
+  border-radius: 8px;
+  padding: 20px;
+}
+
+.detalhes-img img {
+  width: 100%;
+  border-radius: 8px;
+  object-fit: cover;
+  height: 100%;
+}
+
+.detalhes-avaliacao {
+  text-align: center;
+  font-size: 20px;
+  background-color: rgb(31, 39, 39);
+  color: white;
+  border-radius: 8px;
+}
+
+#descricao-container{
+    background-color: rgb(7, 7, 7);
+    padding: 16px;
+    border-radius: 8px;
+}
+hr{
+    margin-bottom: 10px;
 }

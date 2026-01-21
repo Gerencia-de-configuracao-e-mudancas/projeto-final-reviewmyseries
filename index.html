@@ -20,25 +20,53 @@
         </nav>
     </header>
     <div id="content">
-        <h2 id="h2-inicio">Séries em Destaque</h2>
-        <hr>
-        <div class="series-container">
-            <div class="series-item">
-                <img src="imagens/stranger_things.jpeg" alt="Stranger Things">
-                  
+            <h2 id="h2-inicio">Séries Favoritas de Nossos Usuários</h2>
+            <hr>
+            <div class="series-container">
+                <div class="series-item" onclick="mostrarDetalhes('breakingbad')">
+                    <img src="imagens/breaking_bad.jpeg" alt="Breaking Bad">
+                    <h3>9.9<b id="star">★</b></h3>
+                </div>
+                <div class="series-item" onclick="mostrarDetalhes('the_crown')">
+                    <img src="imagens/the_crown.webp" alt="The Crown">
+                    <h3>9<b id="star">★</b></h3>
+                </div>
+                    <div class="series-item" onclick="mostrarDetalhes('stranger_things')">
+                        <img src="imagens/stranger_things.jpeg" alt="Stranger Things">
+                        <h3>8.5<b id="star">★</b></h3>
+                </div>
+
+                <div class="series-item" onclick="mostrarDetalhes('game_of_thrones')">
+                    <img src="imagens/game_of_thrones.png" alt="Game of Thrones">
+                    <h3>8<b id="star">★</b></h3>
+                </div>
             </div>
-            <div class="series-item">
-                <img src="imagens/the_crown.webp" alt="The Crown">
-        
+        <section id="detalhes-serie">
+            <div class="detalhes-grid">
+            
+              <div class="detalhes-img">
+                <img id="detalhe-imagem" src="" alt="Capa da série">
+              </div>
+          
+              <div class="detalhes-info">
+                <h2 id="detalhe-nome">Nome da série</h2>
+                <div id="descricao-container">
+                    <p id="detalhe-descricao">Descrição da série</p>
+                    <p><strong>Duração:</strong> <span id="detalhe-duracao"></span></p>
+                    <p><strong>Temporadas:</strong> <span id="detalhe-temporadas"></span></p>
+                </div>
+              </div>
+          
+              <div class="detalhes-avaliacao">
+                <p>Avalie esta série</p>
+                <div class="estrelas">
+                  ★ ★ ★ ★ ★
+                </div>
+              </div>
+          
             </div>
-            <div class="series-item">
-                <img src="imagens/breaking_bad.jpeg" alt="Breaking Bad">
-              
-            </div>
-            <div class="series-item">
-                <img src="imagens/game_of_thrones.png" alt="Game of Thrones">
-               
-            </div>
+        </section>
     </div>
+    <script src="script.js"></script>
 </body>
 </html>
