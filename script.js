@@ -106,3 +106,8 @@ function atualizarDisplayNota(id) {
         display.innerText = notaImdb.toFixed(1);
     }
 }
+function scrollCarousel(id, direction) {
+  const container = document.getElementById(id);
+  const scrollAmount = 220; // largura do card + gap
+  container.scrollLeft += direction * scrollAmount;
+}
