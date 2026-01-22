@@ -1,5 +1,8 @@
 let serieAtualAtiva = "";
 let notaSelecionada = 0;
+let tipoAtual = "";
+let notaFormulario = 0;
+let imagemSelecionada = null;
 
 const dados = {
     stranger_things: {
@@ -106,8 +109,89 @@ function atualizarDisplayNota(id) {
         display.innerText = notaImdb.toFixed(1);
     }
 }
+
 function scrollCarousel(id, direction) {
   const container = document.getElementById(id);
-  const scrollAmount = 220; // largura do card + gap
+  const scrollAmount = 220;
   container.scrollLeft += direction * scrollAmount;
+}
+
+function abrirFormulario(tipo) {
+    tipoAtual = tipo;
+    notaFormulario = 0;
+    imagemSelecionada = null;
+    
+    document.getElementById('modal-formulario').style.display = 'block';
+    document.getElementById('titulo-formulario').innerText = tipo === 'serie' ? 'Adicionar Série' : 'Adicionar Filme';
+    document.getElementById('input-nome').value = '';
+    document.getElementById('preview-imagem').innerHTML = '';
+    document.getElementById('input-imagem').value = '';
+    
+    const estrelasForm = document.querySelectorAll('.star-form');
+    estrelasForm.forEach(s => s.classList.remove('ativo'));
+}
+
+function fecharFormulario() {
+    document.getElementById('modal-formulario').style.display = 'none';
+}
+
+document.getElementById('input-imagem').addEventListener('change', function(e) {
+    const arquivo = e.target.files[0];
+    if (arquivo) {
+        const leitor = new FileReader();
+        leitor.onload = function(evento) {
+            imagemSelecionada = evento.target.result;
+            document.getElementById('preview-imagem').innerHTML = '<img src="' + evento.target.result + '" alt="Preview">';
+        };
+        leitor.readAsDataURL(arquivo);
+    }
+});
+
+function selecionarEstrelaForm(valor) {
+    notaFormulario = valor;
+    const estrelasForm = document.querySelectorAll('.star-form');
+    estrelasForm.forEach((s, i) => {
+        if (i < valor) {
+            s.classList.add('ativo');
+        } else {
+            s.classList.remove('ativo');
+        }
+    });
+}
+
+function salvarItem() {
+    const nome = document.getElementById('input-nome').value;
+    
+    if (!nome) {
+        alert('Digite o nome da série/filme!');
+        return;
+    }
+    
+    if (!imagemSelecionada) {
+        alert('Selecione uma imagem!');
+        return;
+    }
+    
+    if (notaFormulario === 0) {
+        alert('Selecione uma avaliação!');
+        return;
+    }
+    
+    const containerClass = tipoAtual === 'serie' ? 'series-container' : 'filme-container';
+    const itemClass = tipoAtual === 'serie' ? 'series-item' : 'filme-item';
+    const containerId = tipoAtual === 'serie' ? 'minhas-series' : 'meus-filmes';
+    
+    const container = document.querySelector('#' + containerId + ' .' + containerClass);
+    
+    const novoDiv = document.createElement('div');
+    novoDiv.className = itemClass;
+    novoDiv.innerHTML = '<img src="' + imagemSelecionada + '" alt="' + nome + '"><h3>' + notaFormulario + '<b id="star">★</b></h3>';
+    
+    container.appendChild(novoDiv);
+    
+    fecharFormulario();
+}
+
+function mostrarDetalhesFilme(idFilme) {
+    alert('Detalhes do filme em desenvolvimento!');
 }
