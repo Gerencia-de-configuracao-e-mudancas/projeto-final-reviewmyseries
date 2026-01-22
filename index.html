@@ -13,69 +13,173 @@
              <p class="namesite1">Review</p>
              <p class="namesite2">MySeries</p>
             <ul id ="navList">
-                <li><a href="index.html">Inicio</a></li>
-                <li><a href="#">Séries</a></li>
-                <li><a href="#">Filmes</a></li>
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#series">Séries</a></li>
+                <li><a href="#filmes">Filmes</a></li>
             </ul>
         </nav>
     </header>
 
     <div id="content">
-        <h2 id="h2-inicio">Séries Favoritas de Nossos Usuários</h2>
+        <section id="inicio">
+            <h1>Bem-vindo ao Review MySeries!</h1>
+            <p>Descubra, avalie e compartilhe suas séries favoritas com nossa comunidade apaixonada por entretenimento. Navegue por uma vasta coleção de séries, leia avaliações detalhadas e deixe sua opinião para ajudar outros fãs a encontrarem suas próximas maratonas imperdíveis!</p>
+        </section>
         <hr>
-        <div class="series-container">
+        <section id="series">
+            <h2>Minhas Séries Assistidas</h2>
+
+            <div class="carousel">
+                <button class="arrow left" onclick="scrollCarousel('minhas-series', -1)">‹</button>
+
+                <div class="carousel-track" id="minhas-series">
+                  <div class="series-container">
+                    <div class="series-item" onclick="mostrarDetalhes('the100')">
+                      <img src="imagens/the100.jpeg" alt="the 100">
+                      <h3>9.9<b id="star">★</b></h3>
+                    </div>
+                    <div class="series-item" onclick="mostrarDetalhes('stranger_things')">
+                      <img src="imagens/stranger_things.jpeg" alt="stranger_things">
+                      <h3>9.8<b id="star">★</b></h3>
+                    </div>
+                    <div class="series-item" onclick="mostrarDetalhes('it')">
+                      <img src="imagens/it.jpeg" alt="it">
+                      <h3>9.7<b id="star">★</b></h3>
+                    </div>
+                    <div class="series-item" onclick="mostrarDetalhes('theboys')">
+                      <img src="imagens/theboys.jpeg" alt="the boys">
+                      <h3>9.6<b id="star">★</b></h3>
+                    </div>
+                  </div>
+                </div>
+            <button class="arrow right" onclick="scrollCarousel('minhas-series', 1)">›</button>
+            </div>
+            <div class="card add">
+                <h3>+</h3>
+                <p>Adicionar</p>
+            </div>
+
+    <h2>Séries Favoritas dos Usuários</h2>
+
+    <div class="carousel">
+        <div class="carousel-track" id="favoritas-series">
+          <!-- suas séries favoritas já prontas -->
+          <div class="series-container">
             <div class="series-item" onclick="mostrarDetalhes('breakingbad')">
-                <img src="imagens/breaking_bad.jpeg" alt="Breaking Bad">
-                <h3><span id="display-breakingbad">9.9</span><b id="star">★</b></h3>
+              <img src="imagens/breaking_bad.jpeg" alt="Breaking Bad">
+              <h3>9.9<b id="star">★</b></h3>
             </div>
             <div class="series-item" onclick="mostrarDetalhes('the_crown')">
-                <img src="imagens/the_crown.webp" alt="The Crown">
-                <h3><span id="display-the_crown">9.0</span><b id="star">★</b></h3>
+              <img src="imagens/the_crown.webp" alt="The Crown">
+              <h3>9<b id="star">★</b></h3>
             </div>
             <div class="series-item" onclick="mostrarDetalhes('stranger_things')">
-                <img src="imagens/stranger_things.jpeg" alt="Stranger Things">
-                <h3><span id="display-stranger_things">8.5</span><b id="star">★</b></h3>
+              <img src="imagens/stranger_things.jpeg" alt="Stranger Things">
+              <h3>8.5<b id="star">★</b></h3>
             </div>
             <div class="series-item" onclick="mostrarDetalhes('game_of_thrones')">
-                <img src="imagens/game_of_thrones.png" alt="Game of Thrones">
-                <h3><span id="display-game_of_thrones">8.0</span><b id="star">★</b></h3>
+              <img src="imagens/game_of_thrones.png" alt="Game of Thrones">
+              <h3>8<b id="star">★</b></h3>
             </div>
+          </div>
+        </div>
+      </div>
+
+      <section id="detalhes-serie">
+        <div class="detalhes-grid">
+          <div class="detalhes-img">
+            <img id="detalhe-imagem" src="" alt="Capa da série">
+          </div>
+
+          <div class="detalhes-info">
+            <h2 id="detalhe-nome">Nome da série</h2>
+            <div id="descricao-container">
+              <p id="detalhe-descricao">Descrição da série</p>
+              <p><strong>Duração:</strong> <span id="detalhe-duracao"></span></p>
+              <p><strong>Temporadas:</strong> <span id="detalhe-temporadas"></span></p>
+            </div>
+          </div>
+
+          <div class="detalhes-avaliacao">
+            <p>Sua Avaliação:</p>
+            <div class="estrelas-voto">
+              <span class="star-btn" onclick="selecionarEstrela(1)">★</span>
+              <span class="star-btn" onclick="selecionarEstrela(2)">★</span>
+              <span class="star-btn" onclick="selecionarEstrela(3)">★</span>
+              <span class="star-btn" onclick="selecionarEstrela(4)">★</span>
+              <span class="star-btn" onclick="selecionarEstrela(5)">★</span>
+              <span class="star-btn" onclick="selecionarEstrela(6)">★</span>
+              <span class="star-btn" onclick="selecionarEstrela(7)">★</span>
+              <span class="star-btn" onclick="selecionarEstrela(8)">★</span>
+              <span class="star-btn" onclick="selecionarEstrela(9)">★</span>
+              <span class="star-btn" onclick="selecionarEstrela(10)">★</span>
+            </div>
+            <button id="btn-avaliar" onclick="salvarAvaliacao()">Avaliar</button>
+            <p id="feedback-voto"></p>
+          </div>
+        </div>
+      </section>
+    </section>
+      <section id="filmes">
+        <h2>Meus Filmes Assistidos</h2>
+
+        <div class="carousel">
+          <button class="arrow left" onclick="scrollCarousel('meus-filmes', -1)">‹</button>
+
+          <div class="carousel-track" id="meus-filmes">
+            <!-- cards de filmes -->
+            <div class="filme-container">
+              <div class="filme-item" onclick="mostrarDetalhesFilme('origem')">
+                <img src="imagens/a origem.jpeg" alt="Inception">
+                <h3>9<b id="star">★</b></h3>
+              </div>
+              <div class="filme-item" onclick="mostrarDetalhesFilme('era do gelo')">
+                <img src="imagens/eradogelo.jpeg" alt="a era do gelo">
+                <h3>0<b id="star">★</b></h3>
+              </div>
+              <div class="filme-item" onclick="mostrarDetalhesFilme('labirintodofauno')">
+                <img src="imagens/labirintodofauno.jpeg" alt="o labirinto do fauno">
+                <h3>0<b id="star">★</b></h3>
+              </div>
+              <div class="filme-item" onclick="mostrarDetalhesFilme('fuja')">
+                <img src="imagens/fuja.jpeg" alt="fuja">
+                <h3>0<b id="star">★</b></h3>
+              </div>
+            </div>
+          </div>
+          <button class="arrow right" onclick="scrollCarousel('meus-filmes', 1)">›</button>
+        </div>
+        <div class="card add">
+          <h3>+</h3>
+          <p>Adicionar</p>
         </div>
 
-        <section id="detalhes-serie">
-            <div class="detalhes-grid">
-              <div class="detalhes-img">
-                <img id="detalhe-imagem" src="" alt="Capa da série">
+        <h2>Filmes Favoritos dos Usuários</h2>
+
+        <div class="carousel">
+          <div class="carousel-track" id="favoritos-filmes">
+            <!-- seus filmes favoritos já prontos -->
+            <div class="filme-container">
+              <div class="filme-item" onclick="mostrarDetalhesFilme('origem')">
+                <img src="imagens/a origem.jpeg" alt="Inception">
+                <h3>9<b id="star">★</b></h3>
               </div>
-          
-              <div class="detalhes-info">
-                <h2 id="detalhe-nome">Nome da série</h2>
-                <div id="descricao-container">
-                    <p id="detalhe-descricao">Descrição da série</p>
-                    <p><strong>Duração:</strong> <span id="detalhe-duracao"></span></p>
-                    <p><strong>Temporadas:</strong> <span id="detalhe-temporadas"></span></p>
-                </div>
+              <div class="filme-item" onclick="mostrarDetalhesFilme('interestelar')">
+                <img src="imagens/interestelar.jpeg" alt="Interestelar">
+                <h3>9.5<b id="star">★</b></h3>
               </div>
-          
-              <div class="detalhes-avaliacao">
-                <p>Sua Avaliação:</p>
-                <div class="estrelas-voto">
-                    <span class="star-btn" onclick="selecionarEstrela(1)">★</span>
-                    <span class="star-btn" onclick="selecionarEstrela(2)">★</span>
-                    <span class="star-btn" onclick="selecionarEstrela(3)">★</span>
-                    <span class="star-btn" onclick="selecionarEstrela(4)">★</span>
-                    <span class="star-btn" onclick="selecionarEstrela(5)">★</span>
-                    <span class="star-btn" onclick="selecionarEstrela(6)">★</span>
-                    <span class="star-btn" onclick="selecionarEstrela(7)">★</span>
-                    <span class="star-btn" onclick="selecionarEstrela(8)">★</span>
-                    <span class="star-btn" onclick="selecionarEstrela(9)">★</span>
-                    <span class="star-btn" onclick="selecionarEstrela(10)">★</span>
-                </div>
-                <button id="btn-avaliar" onclick="salvarAvaliacao()">Avaliar</button>
-                <p id="feedback-voto"></p>
+              <div class="filme-item" onclick="mostrarDetalhesFilme('clube_da_luta')">
+                <img src="imagens/clube_da_luta.jpeg" alt="Clube da Luta">
+                <h3>8.8<b id="star">★</b></h3>
+              </div>
+              <div class="filme-item" onclick="mostrarDetalhesFilme('parasita')">
+                <img src="imagens/parasita.jpeg" alt="Parasita">
+                <h3>8.6<b id="star">★</b></h3>
               </div>
             </div>
-        </section>
+          </div>
+        </div>
+      </section>
     </div>
     <script src="script.js"></script>
 </body>
