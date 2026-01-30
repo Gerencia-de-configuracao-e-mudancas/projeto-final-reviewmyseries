@@ -22,7 +22,7 @@
 
     <div id="content">
         <section id="inicio">
-            <h1>Bem-vindo ao Review MySeries!</h1>
+            <h1 class="welcome">Bem-vindo ao Review MySeries!</h1>
             <p>Descubra, avalie e compartilhe suas séries favoritas com nossa comunidade apaixonada por entretenimento. Navegue por uma vasta coleção de séries, leia avaliações detalhadas e deixe sua opinião para ajudar outros fãs a encontrarem suas próximas maratonas imperdíveis!</p>
         </section>
         <hr>
@@ -61,7 +61,8 @@
 
     <h2>Séries Favoritas dos Usuários</h2>
 
-    <div class="carousel">
+    <div class="carousel carousel-favoritos">
+        <button class="arrow left arrow-mobile" onclick="scrollCarousel('favoritas-series', -1)">‹</button>
         <div class="carousel-track" id="favoritas-series">
           <div class="series-container">
             <div class="series-item" onclick="mostrarDetalhes('breakingbad')">
@@ -82,6 +83,7 @@
             </div>
           </div>
         </div>
+        <button class="arrow right arrow-mobile" onclick="scrollCarousel('favoritas-series', 1)">›</button>
       </div>
 
       <section id="detalhes-serie">
@@ -154,7 +156,8 @@
 
         <h2>Filmes Favoritos dos Usuários</h2>
 
-        <div class="carousel">
+        <div class="carousel carousel-favoritos">
+          <button class="arrow left arrow-mobile" onclick="scrollCarousel('favoritos-filmes', -1)">‹</button>
           <div class="carousel-track" id="favoritos-filmes">
             <div class="filme-container">
               <div class="filme-item" onclick="mostrarDetalhesFilme('origem')">
@@ -175,6 +178,7 @@
               </div>
             </div>
           </div>
+          <button class="arrow right arrow-mobile" onclick="scrollCarousel('favoritos-filmes', 1)">›</button>
         </div>
       </section>
     </div>
