@@ -36,6 +36,29 @@ const dados = {
         temporadas: "8",
         imagem: "imagens/game_of_thrones.png",
         imdb: 8.0
+    },
+    it: {
+        nome: "It: welcome to Derry",
+        descricao: "Um grupo de crianças enfrenta seus piores medos quando um ser maligno, que assume a forma de um palhaço, começa a aterrorizar sua cidade.",
+        duracao: "135 min",
+        imagem: "imagens/it.jpeg",
+        imdb: 7.5
+    },
+    the100: {
+        nome: "The 100",
+        descricao: "Após um apocalipse nuclear, 100 jovens delinquentes são enviados de volta à Terra para verificar se o planeta é habitável novamente.",
+        duracao: "42 min",
+        temporadas: "7",
+        imagem: "imagens/the100.jpeg",
+        imdb: 8.1
+    },
+    theboys: {
+        nome: "The Boys",
+        deacrição: "Em um mundo onde super-heróis abusam de seus poderes, um grupo de vigilantes decide enfrentá-los para proteger a humanidade.",
+        duracao: "60 min",
+        temporadas: "3",
+        imagem: "imagens/theboys.jpeg",
+        imdb: 8.7
     }
 };
 
@@ -104,7 +127,7 @@ function atualizarDisplayNota(id) {
 
     if (display) {
         if (votoUsuario) {
-            const media = (notaImdb + parseInt(votoUsuario)) / 2;
+            const media = parseInt(votoUsuario);
             display.innerText = media.toFixed(1);
         } else {
             display.innerText = notaImdb.toFixed(1);
@@ -164,36 +187,51 @@ function selecionarEstrelaForm(valor) {
 function salvarItem() {
     const nome = document.getElementById('input-nome').value;
 
-    if (!nome) {
-        alert('Digite o nome da série/filme!');
+    if (!nome || !imagemSelecionada || notaFormulario === 0) {
+        alert('Preencha todos os campos e selecione uma nota!');
         return;
     }
 
-    if (!imagemSelecionada) {
-        alert('Selecione uma imagem!');
-        return;
-    }
-
-    if (notaFormulario === 0) {
-        alert('Selecione uma avaliação!');
-        return;
-    }
-
-    const containerClass = tipoAtual === 'serie' ? 'series-container' : 'filme-container';
-    const itemClass = tipoAtual === 'serie' ? 'series-item' : 'filme-item';
     const containerId = tipoAtual === 'serie' ? 'minhas-series' : 'meus-filmes';
-
-    const container = document.querySelector('#' + containerId + ' .' + containerClass);
+    const container = document.querySelector('#' + containerId + ' .series-container, #' + containerId + ' .filme-container');
 
     const novoDiv = document.createElement('div');
-    novoDiv.className = itemClass;
-    novoDiv.innerHTML = '<img src="' + imagemSelecionada + '" alt="' + nome + '"><h3>' + notaFormulario + '<b id="star">★</b></h3>';
+    novoDiv.className = tipoAtual === 'serie' ? 'series-item' : 'filme-item';
+
+    const dadosNovos = {
+        nome: nome,
+        imagem: imagemSelecionada,
+        nota: notaFormulario
+    };
+
+    novoDiv.onclick = function() {
+        abrirDetalhesDinamico(dadosNovos);
+    };
+
+    novoDiv.innerHTML = `
+        <img src="${imagemSelecionada}" alt="${nome}">
+        <h3>${notaFormulario.toFixed(1)}<b class="star">★</b></h3>
+    `;
 
     container.appendChild(novoDiv);
-
     fecharFormulario();
 }
 
 function mostrarDetalhesFilme(idFilme) {
     alert('Detalhes do filme em desenvolvimento!');
+}
+function abrirDetalhesDinamico(objeto) {
+
+    document.getElementById("detalhe-nome").innerText = objeto.nome;
+    document.getElementById("detalhe-descricao").innerText = "Esta obra foi adicionada manualmente à sua lista.";
+    document.getElementById("detalhe-duracao").innerText = "-";
+    document.getElementById("detalhe-temporadas").innerText = "-";
+    document.getElementById("detalhe-imagem").src = objeto.imagem;
+
+    const secao = document.getElementById("detalhes-serie");
+    secao.style.display = "block";
+    secao.scrollIntoView({ behavior: "smooth" });
+
+    pintarEstrelas(objeto.nota);
+    document.getElementById("feedback-voto").innerText = "Nota inicial: " + objeto.nota;
 }
