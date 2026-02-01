@@ -73,7 +73,7 @@ h2 {
   height: 24px;  
   margin: 0 4px 0 20px;
 }
-#star{
+#star, .star{
   color: gold;
 }
 .series-item h3, .filme-item h3 {
