@@ -4,6 +4,8 @@ let tipoAtual = "";
 let notaFormulario = 0;
 let imagemSelecionada = null;
 
+let meuItensAdicionados = [];
+
 const dados = {
     stranger_things: {
         nome: "Stranger Things",
@@ -66,7 +68,40 @@ window.onload = function() {
     Object.keys(dados).forEach(id => {
         atualizarDisplayNota(id);
     });
+    
+    carregarItensSalvos();
 };
+
+function carregarItensSalvos() {
+    const itensSalvos = localStorage.getItem('meus_itens');
+    
+    if(itensSalvos) {
+        meuItensAdicionados = JSON.parse(itensSalvos);
+        
+        meuItensAdicionados.forEach(item => {
+            adicionarItemNaTela(item);
+        });
+    }
+}
+
+function adicionarItemNaTela(item) {
+    const containerId = item.tipo === 'serie' ? 'minhas-series' : 'meus-filmes';
+    const container = document.querySelector('#' + containerId + ' .series-container, #' + containerId + ' .filme-container');
+    
+    const novoDiv = document.createElement('div');
+    novoDiv.className = item.tipo === 'serie' ? 'series-item' : 'filme-item';
+
+    novoDiv.onclick = function() {
+        abrirDetalhesDinamico(item);
+    };
+
+    novoDiv.innerHTML = `
+        <img src="${item.imagem}" alt="${item.nome}">
+        <h3>${item.nota.toFixed(1)}<b class="star">★</b></h3>
+    `;
+
+    container.appendChild(novoDiv);
+}
 
 function mostrarDetalhes(idSerie) {
     serieAtualAtiva = idSerie;
@@ -192,34 +227,26 @@ function salvarItem() {
         return;
     }
 
-    const containerId = tipoAtual === 'serie' ? 'minhas-series' : 'meus-filmes';
-    const container = document.querySelector('#' + containerId + ' .series-container, #' + containerId + ' .filme-container');
-
-    const novoDiv = document.createElement('div');
-    novoDiv.className = tipoAtual === 'serie' ? 'series-item' : 'filme-item';
-
-    const dadosNovos = {
+    const novoItem = {
         nome: nome,
         imagem: imagemSelecionada,
-        nota: notaFormulario
+        nota: notaFormulario,
+        tipo: tipoAtual
     };
+    
+    meuItensAdicionados.push(novoItem);
+    
+    localStorage.setItem('meus_itens', JSON.stringify(meuItensAdicionados));
+    
+    adicionarItemNaTela(novoItem);
 
-    novoDiv.onclick = function() {
-        abrirDetalhesDinamico(dadosNovos);
-    };
-
-    novoDiv.innerHTML = `
-        <img src="${imagemSelecionada}" alt="${nome}">
-        <h3>${notaFormulario.toFixed(1)}<b class="star">★</b></h3>
-    `;
-
-    container.appendChild(novoDiv);
     fecharFormulario();
 }
 
 function mostrarDetalhesFilme(idFilme) {
     alert('Detalhes do filme em desenvolvimento!');
 }
+
 function abrirDetalhesDinamico(objeto) {
 
     document.getElementById("detalhe-nome").innerText = objeto.nome;
